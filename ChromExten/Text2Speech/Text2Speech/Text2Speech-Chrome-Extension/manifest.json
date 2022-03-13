@@ -1,0 +1,63 @@
+{
+  "name": "Txt-2-Speech",
+  "description": "Text To Speech for the visually impaired.",
+  "main": "voice-commands.min.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "tts",
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "storage",
+    "contextMenus",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "scripting"
+  ],
+
+  "declarative_net_request":{
+    "rule_resources":[
+      {
+        "id":"ruleset_1",
+        "enabled":true,
+        "path":"easy_list_4.json"
+      },
+      {
+        "id":"ruleset_2",
+        "enabled":true,
+        "path":"rules.json"
+      }
+    ]
+  },
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "background":{
+    "service_worker": "background.js"
+  },
+
+  "icons":{
+    "16": "imgs/icon.jpg",
+    "24": "imgs/icon.jpg",
+    "32": "imgs/icon.jpg"
+  },
+
+  "action":{
+     "default_title":"Synch Settings",
+     "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+   {
+     "matches": ["<all_urls>"],
+     "js": ["app.js" ]
+   }
+ ]
+}
